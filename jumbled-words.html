@@ -50,6 +50,7 @@
 
         input[type='submit']:hover {
             color: white;
+            background-color: #15686b;
         }
 
         input[type='submit']:active {
@@ -93,19 +94,45 @@
     
     // Step 3. Call Function Generate Word
     // Write to code bellow
+    let key = generateWord();
     
-  
    // Step 1. Function Shuffle Word
    // Write to code bellow
-   
-   
+    function shuffleWord(word){
+        var shuffleWord = '';
+        word = word.split('');
+        while(word.length > 0){
+            shuffleWord += word.splice(word.length * Math.random() << 0, 1);
+        }
+        return shuffleWord;
+    }
+    
    // Step 2. Function Generate Word
    // Write to code bellow
     
+    function generateWord(){
+        var words = ["JAVASCRIPT", "PYTHON", "HTML", "JAVA", "RUBY", "PHP", "PASCAL", "GOLANG", "SWIFT", "KOTLIN", "RUST"];
+        var random = parseInt(Math.random() * words.length-1);
+        var choosenWord = words[random];
+        jumbled.innerHTML = shuffleWord(choosenWord);
+        return choosenWord;
+    }
     
     // Step 4. Check Answer
     // Write to code bellow
-    
+    submit.addEventListener("click", () => {
+        
+        var answer = input.value.toUpperCase();
+        if(answer != key){
+            result.innerHTML = "Try Again !";
+            input.value = "";
+        }else{
+            result.innerHTML = "Correct, You Win";
+            input.value = "";
+            key = generateWord();
+        }
+    }) 
+        
     
         
 </script>
